@@ -11,7 +11,7 @@ object Application {
         val server = vertx.createHttpServer()
 
         router.get("/").handler {
-            it.response().end("Welcome to Vert.x HTTP Server")
+            it.response().end("Welcome Vert.x HTTP Server")
         }
 
         server.requestHandler(router).listen(8080) {
