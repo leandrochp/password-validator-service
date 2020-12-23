@@ -1,4 +1,4 @@
-package io.github.leandro.passw0rdvalidatorservice.application
+package io.github.leandrochp.passw0rdvalidatorservice.application
 
 object Main {
 

@@ -7,7 +7,7 @@ apply plugin: 'application'
 
 group 'io.github.leandrochp.passw0rdvalidatorservice'
 version '1.0-SNAPSHOT'
-mainClassName = 'io.github.leandro.passw0rdvalidatorservice.application.Main'
+mainClassName = 'io.github.leandrochp.passw0rdvalidatorservice.application.Main'
 
 sourceCompatibility = 1.8
 
