@@ -13,16 +13,32 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+
+    //env
+    implementation 'com.natpryce:konfig:1.6.10.0'
+
+    //injection
+    implementation 'org.koin:koin-core:2.1.6'
 
     //vertx
-    compile 'io.vertx:vertx-core:3.9.4'
-    compile 'io.vertx:vertx-web:3.9.4'
-    compile 'io.vertx:vertx-lang-kotlin:3.9.4'
+    implementation 'io.vertx:vertx-core:3.9.4'
+    implementation 'io.vertx:vertx-web:3.9.4'
+    implementation 'io.vertx:vertx-lang-kotlin:3.9.4'
 
+    //test
+    testImplementation 'io.mockk:mockk:1.10.0'
+    testImplementation 'org.assertj:assertj-core:3.16.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.5.2'
+
+}
+
+test {
+    useJUnitPlatform()
 }
 
 compileKotlin {
