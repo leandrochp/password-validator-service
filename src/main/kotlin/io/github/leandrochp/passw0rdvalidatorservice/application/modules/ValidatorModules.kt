@@ -1,7 +1,11 @@
 package io.github.leandrochp.passw0rdvalidatorservice.application.modules
 
 import io.github.leandrochp.passw0rdvalidatorservice.application.configs.EnvironmentVariablesConfig
+import io.github.leandrochp.passw0rdvalidatorservice.application.web.requests.ValidateRequest
+import io.github.leandrochp.passw0rdvalidatorservice.application.web.validators.ValidateRequestValidator
+import io.github.leandrochp.passw0rdvalidatorservice.application.web.validators.Validator
 import io.github.leandrochp.passw0rdvalidatorservice.domain.handlers.CompletePasswordValidatorHandler
+import io.github.leandrochp.passw0rdvalidatorservice.domain.handlers.ValidatorHandler
 import io.github.leandrochp.passw0rdvalidatorservice.domain.validators.ValidatorDigit
 import io.github.leandrochp.passw0rdvalidatorservice.domain.validators.ValidatorLength
 import io.github.leandrochp.passw0rdvalidatorservice.domain.validators.ValidatorLowerCase
@@ -11,7 +15,11 @@ import io.github.leandrochp.passw0rdvalidatorservice.domain.validators.Validator
 import org.koin.dsl.module
 
 val validatorModules = module {
-    single { CompletePasswordValidatorHandler(
+    single<Validator<ValidateRequest>> {
+        ValidateRequestValidator()
+    }
+
+    single<ValidatorHandler> { CompletePasswordValidatorHandler(
         listOf(
             ValidatorLength(get<EnvironmentVariablesConfig>().validatorPasswordMinLength),
             ValidatorLowerCase(get<EnvironmentVariablesConfig>().validatorPasswordMinLowerCase),

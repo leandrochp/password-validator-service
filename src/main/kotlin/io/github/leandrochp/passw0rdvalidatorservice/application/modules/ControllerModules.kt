@@ -4,5 +4,5 @@ import io.github.leandrochp.passw0rdvalidatorservice.application.web.controllers
 import org.koin.dsl.module
 
 val controllerModules = module {
-    single { PasswordValidatorController(get()) }
+    single { PasswordValidatorController(get(), get()) }
 }

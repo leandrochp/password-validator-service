@@ -13,6 +13,7 @@ class EnvironmentVariablesConfig(
     val serverPort = configuration[SERVER_PORT]
 
     val validatorPasswordMinLength = configuration[VALIDATOR_PASSWORD_MIN_LENGTH]
+    val validatorPasswordMaxLength = configuration[VALIDATOR_PASSWORD_MAX_LENGTH]
     val validatorPasswordMinLowerCase = configuration[VALIDATOR_PASSWORD_MIN_LOWERCASE]
     val validatorPasswordMinUpperCase = configuration[VALIDATOR_PASSWORD_MIN_UPPERCASE]
     val validatorPasswordMinDigits = configuration[VALIDATOR_PASSWORD_MIN_DIGITS]
@@ -25,6 +26,7 @@ class EnvironmentVariablesConfig(
         private val SERVER_PORT by intType
 
         private val VALIDATOR_PASSWORD_MIN_LENGTH by intType
+        private val VALIDATOR_PASSWORD_MAX_LENGTH by intType
         private val VALIDATOR_PASSWORD_MIN_LOWERCASE by intType
         private val VALIDATOR_PASSWORD_MIN_UPPERCASE by intType
         private val VALIDATOR_PASSWORD_MIN_DIGITS by intType
