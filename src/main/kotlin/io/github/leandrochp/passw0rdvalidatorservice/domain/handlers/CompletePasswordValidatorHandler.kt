@@ -4,10 +4,10 @@ import io.github.leandrochp.passw0rdvalidatorservice.domain.password.Password
 import io.github.leandrochp.passw0rdvalidatorservice.domain.validators.Validator
 
 class CompletePasswordValidatorHandler(
-    private val validators: List<Validator<Password>>
-) {
+    validators: List<Validator<Password>>
+) : ValidatorHandler(validators) {
 
-    fun check(password: Password): Boolean {
+    override fun check(password: Password): Boolean {
         validators.map {
             if (!it.validate(password)) return false
         }
