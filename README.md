@@ -2,11 +2,13 @@
 
 **passw0rd-validator-service** é um micro serviço validador de senha para auxiliar na validação seguindo definições parametrizadas para uma senha válida.
 
+O serviço foi desenvolvido em Kotlin e com [Vert.x-Web](https://vertx.io/docs/vertx-web/java/) para subir um servidor Web expondo o endpoint de validação de senha.
+
 O serviço expõe um **Endpoint:** ```POST http://localhost:9000/validate``` que será utilizado para validar a senha.
 
 ## Visão geral
 
-É um serviço simples no qual validará uma senha seguindo as definições:
+É um serviço RESTful simples no qual validará uma senha seguindo as definições:
 - Nove ou mais caracteres
 - Ao menos 1 dígito
 - Ao menos 1 letra minúscula
@@ -46,7 +48,7 @@ Esses **validadores** estão na `camada de domínio` no pacote ```validators``` 
 
 ```
 
-Além de permitir configurar por [variáveis de ambiente](#definir-variveis-de-ambiente-obrigatrias) para cada **validador**.
+Esses **validadores** utlizando [variáveis de ambiente](#definir-variveis-de-ambiente-obrigatrias) que possibilita redefinir para cada **validador** sua regra de negócio.
 
 O código é auto-explicativo e se encaixa na arquitetura de micro serviço. A validação da senha é requisita enviando para camada de aplicação que possui uma parte de validação.
 Ele executa seu código e depois chama na camada de domínio o ```Service``` para executar toda parte da lógica de negócios nos **validadores**.
