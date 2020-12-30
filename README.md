@@ -1,6 +1,6 @@
 # passw0rd-validator-service
 
-**passw0rd-validator-service** é um micro serviço validador de senha para auxiliar na validação da senha seguindo definições parametrizadas para uma senha válida.
+**passw0rd-validator-service** é um micro serviço validador de senha para auxiliar na validação seguindo definições parametrizadas para uma senha válida.
 
 O serviço expõe um **Endpoint:** ```POST http://localhost:9000/validate``` que será utilizado para validar a senha.
 
@@ -17,7 +17,7 @@ O serviço expõe um **Endpoint:** ```POST http://localhost:9000/validate``` que
 > **_Nota:_** Espaços em branco não devem ser considerados como caracteres válidos.
 
 Além dessas definições acima, foi incluído outra para número máximo de caracteres na `camada de aplicação`. 
-**Considerei importante limitar também o número máximo de caracteres no corpo da mensagem para validação da senha do lado do serviço.**
+**Considerei importante limitar também o número máximo de caracteres no corpo da mensagem (payload) limitando o tamanho para o envio no serviço.**
 
 Na solução do problema da validação da senha, separei cada definição acima em uma classe que nomeio como **validador**.
 
@@ -46,8 +46,10 @@ Esses **validadores** estão na `camada de domínio` no pacote ```validators``` 
 
 ```
 
-Além de permitir configurar por [variáveis de ambiente](#definir-variveis-de-ambiente-obrigatrias) cada valor para o validador aplicar sua validação.
+Além de permitir configurar por [variáveis de ambiente](#definir-variveis-de-ambiente-obrigatrias) para cada **validador**.
 
+O código é auto-explicativo e se encaixa na arquitetura de micro serviço. A validação da senha é requisita enviando para camada de aplicação que possui uma parte de validação.
+Ele executa seu código e depois chama na camada de domínio o ```Service``` para executar toda parte da lógica de negócios nos **validadores**.
 
 ## Requerimentos
 
@@ -73,7 +75,7 @@ VALIDATOR_PASSWORD_MIN_SPECIAL=1
 VALIDATOR_PASSWORD_VALID_SPECIAL_CHARS=!@#$%^&*()-+
 VALIDATOR_PASSWORD_MIN_REPEAT=0
 ```
-> dica: para configurar [dev.env](dev.env) por exemplo, no [IntelliJ](https://www.jetbrains.com/pt-br/idea/) você pode usar o plugin Envfile para ajudar nas configurações na IDE.
+> dica: para configurar [dev.env](dev.env) por exemplo, no [IntelliJ](https://www.jetbrains.com/pt-br/idea/) você pode usar o plugin [Envfile](https://plugins.jetbrains.com/plugin/7861-envfile) para ajudar nas configurações na IDE.
 
 ### Buildar
 ```bash
@@ -91,10 +93,7 @@ VALIDATOR_PASSWORD_MIN_REPEAT=0
 ```
 
 ## Testando
-Para testar o serviço, vamos usar a ferramenta [POSTMAN](https://www.getpostman.com/) ou comando cURL:
-```shell
-curl -XPOST -d '{"password": "AbTp9!fok"}' 'http://localhost:9000/validate'
-```
+Para testar o serviço, vamos usar a ferramenta [POSTMAN](https://www.getpostman.com/) ou comando cURL.
 
 Certifique-se que o serviço está em execução. A saída no console deve ser algo como isso:
 
@@ -109,7 +108,13 @@ Certifique-se que o serviço está em execução. A saída no console deve ser a
 * Defina o corpo como: {"password": "AbTp9!fok"}
 * Clique em "Enviar"
 
-Na resposta, obteremos uma resposta se a senha é válida.
+Na resposta, obteremos se a senha é válida.
+
+`Comando cURL`
+
+```shell
+curl -X POST -d '{"password": "AbTp9!fok"}' 'http://localhost:9000/validate'
+```
 
 > Nota: Sinta se livre em criar outros cenários para validação da sua senha.
 
