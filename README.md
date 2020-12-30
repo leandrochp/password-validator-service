@@ -2,7 +2,7 @@
 
 **passw0rd-validator-service** é um micro serviço validador de senha para auxiliar na validação seguindo definições parametrizadas para uma senha válida.
 
-O serviço foi desenvolvido em Kotlin e com [Vert.x-Web](https://vertx.io/docs/vertx-web/java/) para subir um servidor Web expondo o endpoint de validação de senha.
+O serviço foi desenvolvido em Kotlin e com [Vert.x-Web](https://vertx.io/docs/vertx-web/java/) para subir um servidor Web.
 
 O serviço expõe um **Endpoint:** ```POST http://localhost:9000/validate``` que será utilizado para validar a senha.
 
@@ -18,10 +18,10 @@ O serviço expõe um **Endpoint:** ```POST http://localhost:9000/validate``` que
 - Não possuir caracteres repetidos dentro do conjunto
 > **_Nota:_** Espaços em branco não devem ser considerados como caracteres válidos.
 
-Além dessas definições acima, foi incluído outra para número máximo de caracteres na `camada de aplicação`. 
-**Considerei importante limitar também o número máximo de caracteres no corpo da mensagem (payload) limitando o tamanho para o envio no serviço.**
+Além dessas definições acima, foi incluído outra definição para número máximo de caracteres na `camada de aplicação`. 
+> Considerei importante limitar também o número máximo de caracteres no corpo da mensagem (payload) limitando o tamanho para o envio no serviço.
 
-Na solução do problema da validação da senha, separei cada definição acima em uma classe que nomeio como **validador**.
+Na solução para validação da senha, separei cada definição acima em uma classe que chamo de **validador**.
 
 Esses **validadores** estão na `camada de domínio` no pacote ```validators``` na estrutura abaixo:
 
@@ -45,13 +45,12 @@ Esses **validadores** estão na `camada de domínio` no pacote ```validators``` 
 │   ├───services
 │   └───validators
 └───resource
-
 ```
 
-Esses **validadores** utlizando [variáveis de ambiente](#definir-variveis-de-ambiente-obrigatrias) que possibilita redefinir para cada **validador** sua regra de negócio.
+Esses **validadores** utlizam [variáveis de ambiente](#definir-variveis-de-ambiente-obrigatrias) que possibilita redefinir para cada **validador** sua regra de negócio.
 
-O código é auto-explicativo e se encaixa na arquitetura de micro serviço. A validação da senha é requisita enviando para camada de aplicação que possui uma parte de validação.
-Ele executa seu código e depois chama na camada de domínio o ```Service``` para executar toda parte da lógica de negócios nos **validadores**.
+O código é auto-explicativo e se encaixa na arquitetura de micro serviço. A validação da senha é requisita enviando para `camada de aplicação` que possui uma parte de validação.
+Ela executa seu código e depois chama na `camada de domínio` a classe de serviço para executar toda parte da lógica de negócios nos **validadores**.
 
 ## Requerimentos
 
@@ -110,7 +109,7 @@ Certifique-se que o serviço está em execução. A saída no console deve ser a
 * Defina o corpo como: {"password": "AbTp9!fok"}
 * Clique em "Enviar"
 
-Na resposta, obteremos se a senha é válida.
+Na resposta, obteremos uma propriedade se a senha é válida ou não.
 
 `Comando cURL`
 
