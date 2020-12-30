@@ -117,5 +117,5 @@ Na resposta, obteremos uma propriedade se a senha é válida ou não.
 curl -X POST -d '{"password": "AbTp9!fok"}' 'http://localhost:9000/validate'
 ```
 
-> Nota: Sinta se livre em criar outros cenários para validação da sua senha.
+> Nota: Sinta-se livre em criar outros cenários para validação da sua senha.
 
