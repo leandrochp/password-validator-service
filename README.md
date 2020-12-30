@@ -49,7 +49,7 @@ Esses **validadores** estão na `camada de domínio` no pacote ```validators``` 
 
 Esses **validadores** utlizam [variáveis de ambiente](#definir-variveis-de-ambiente-obrigatrias) que possibilita redefinir para cada **validador** sua regra de negócio.
 
-O código é auto-explicativo e se encaixa na arquitetura de micro serviço. A validação da senha é requisita enviando para `camada de aplicação` que possui uma parte de validação.
+O código é auto-explicativo e se encaixa na arquitetura de micro serviço. A requisição da validação da senha é enviada para `camada de aplicação` que possui uma parte da validação para garantir dados válidos.
 Ela executa seu código e depois chama na `camada de domínio` a classe de serviço para executar toda parte da lógica de negócios nos **validadores**.
 
 ## Requerimentos
