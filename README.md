@@ -1,6 +1,6 @@
 # passw0rd-validator-service
 
-**passw0rd-validator-service** é um micro serviço validador de senha para auxiliar na validação seguindo definições parametrizadas para uma senha válida.
+**passw0rd-validator-service** é um micro serviço validador de senha seguindo definições parametrizadas para uma senha válida.
 
 O serviço foi desenvolvido em Kotlin e com [Vert.x-Web](https://vertx.io/docs/vertx-web/java/) para subir um servidor Web.
 
