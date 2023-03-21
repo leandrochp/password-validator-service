@@ -9,7 +9,7 @@ Essa API foi desenvolvida com:
 - [Spring Boot](https://spring.io/)
 - [OpenAPI 3](https://swagger.io/docs/specification/about/)
 
-### Visão geral
+## Visão geral
 
 É um microsserviço simples no qual validará uma senha seguindo as definições:
 - Nove ou mais caracteres
@@ -42,7 +42,12 @@ curl -X GET "http://localhost:7000/health-check"
 ```
 ### Documentação da API (Swagger)
 
-* URL: [http://localhost:7000/docs](http://localhost:7000/docs)
+* URL: http://localhost:7000/docs ou http://localhost:7000/swagger-ui/index.html
+
+### Decisões do projeto
+
+O DDD (Domain Driven Design) foi utilizado para estruturar o microsserviço. Utilizando apenas duas camadas, aplicação para receber requisições e domínio para armazenar a lógica de negócio. 
+A camada de infraestrutura não foi usada porque a persistência não era um requisito.
 
 ### Validando uma senha
 [`Abra o Postman`](https://www.postman.com/)
