@@ -1,17 +1,20 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    application
-    kotlin("jvm") version "1.4.10"
+    kotlin("jvm") version "1.6.21"
+    kotlin("plugin.spring") version "1.6.21"
+    id("org.springframework.boot") version "2.7.9"
+    id("io.spring.dependency-management") version "1.0.15.RELEASE"
 }
 
-group = "io.github.leandrochp.passw0rdvalidatorservice"
+group = "com.github.leandrochp.passwordvalidatorservice"
 version = "1.0.0"
+java.sourceCompatibility = JavaVersion.VERSION_1_8
 
-val mainPkgAndClass = "io.github.leandrochp.passw0rdvalidatorservice.application.Main"
-
-application {
-    mainClass.set(mainPkgAndClass)
+configurations {
+    compileOnly {
+        extendsFrom(configurations.annotationProcessor.get())
+    }
 }
 
 repositories {
@@ -19,42 +22,63 @@ repositories {
     jcenter()
 }
 
-dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    //env
-    implementation("com.natpryce:konfig:1.6.10.0")
-    //injection
-    implementation("org.koin:koin-core:2.1.6")
-    //jackson
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.11.4")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.11.4")
-    //vertx
-    implementation("io.vertx:vertx-core:3.9.4")
-    implementation("io.vertx:vertx-web:3.9.4")
-    implementation("io.vertx:vertx-lang-kotlin:3.9.4")
-    //log
-    implementation("org.apache.logging.log4j:log4j-api-kotlin:1.0.0")
-    implementation("org.apache.logging.log4j:log4j-api:2.11.1")
-    implementation("org.apache.logging.log4j:log4j-core:2.11.1")
-    //test
-    testImplementation("io.mockk:mockk:1.10.0")
-    testImplementation("org.assertj:assertj-core:3.16.0")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
-
+sourceSets {
+    create("componentTest") {
+        compileClasspath += sourceSets.main.get().output
+        runtimeClasspath += sourceSets.main.get().output
+    }
 }
 
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions.jvmTarget = "1.8"
+val componentTestImplementation: Configuration by configurations.getting {
+    extendsFrom(configurations.implementation.get())
+}
 
-tasks.test {
+
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    //spring-boot
+    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+    //jackson
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    //openapi
+    implementation("org.springdoc:springdoc-openapi-ui:1.6.12")
+    implementation("org.springdoc:springdoc-openapi-data-rest:1.6.12")
+
+    testImplementation("io.mockk:mockk:1.12.4")
+    testImplementation("org.assertj:assertj-core")
+    testImplementation("org.junit.jupiter:junit-jupiter")
+
+    componentTestImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        freeCompilerArgs = listOf("-Xjsr305=strict")
+        jvmTarget = "1.8"
+    }
+}
+
+tasks.create("componentTest", Test::class) {
+    description = "Runs the component tests"
+    group = "verification"
+
+    testClassesDirs = sourceSets["componentTest"].output.classesDirs
+    classpath = sourceSets["componentTest"].runtimeClasspath
+
     useJUnitPlatform()
 }
 
-tasks.jar {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    manifest {
-        attributes(mapOf("Main-Class" to mainPkgAndClass))
-        attributes(mapOf("Package-Version" to archiveVersion))
-    }
-    from(sourceSets.main.get().output)
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
+tasks.test {
+    finalizedBy("componentTest")
+}
+
+springBoot {
+    buildInfo()
 }
