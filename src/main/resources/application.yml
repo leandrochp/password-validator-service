@@ -5,10 +5,14 @@ server:
 logging:
   level:
     org.springframework: ERROR
-    org.springdoc: ERROR
-    org.apache: ERROR
     com.github.leandrochp.passwordvalidatorservice: DEBUG
   pattern:
     console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
     file: "%d %p %c{1.} [%t] %m%n"
   file: app.log
+
+spring:
+  jackson:
+    time-zone: Brazil/East
+    locale: pt-BR
+    default-property-inclusion: non-null
