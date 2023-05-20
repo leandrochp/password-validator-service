@@ -1,4 +1,4 @@
-package com.github.leandrochp.passwordvalidatorservice.utils.mocks
+package com.github.leandrochp.passwordvalidatorservice.application.web.requests
 
 import com.github.leandrochp.passwordvalidatorservice.application.web.requests.PasswordValidateRequest
 

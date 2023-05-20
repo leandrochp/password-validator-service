@@ -1,7 +1,7 @@
 package com.github.leandrochp.passwordvalidatorservice.application.web.controllers
 
 import com.github.leandrochp.passwordvalidatorservice.domain.services.PasswordValidatorService
-import com.github.leandrochp.passwordvalidatorservice.utils.mocks.PasswordValidateRequestMock
+import com.github.leandrochp.passwordvalidatorservice.application.web.requests.PasswordValidateRequestMock
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

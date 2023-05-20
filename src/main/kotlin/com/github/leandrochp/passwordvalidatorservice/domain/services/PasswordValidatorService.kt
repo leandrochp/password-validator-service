@@ -1,6 +1,6 @@
 package com.github.leandrochp.passwordvalidatorservice.domain.services
 
-import com.github.leandrochp.passwordvalidatorservice.domain.password.Password
+import com.github.leandrochp.passwordvalidatorservice.domain.passwordvalidator.Password
 
 interface PasswordValidatorService {
 
