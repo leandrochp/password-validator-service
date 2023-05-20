@@ -2,6 +2,7 @@
 build/
 logs/
 app.log
+app.log.*
 
 # IntelliJ
 .idea
