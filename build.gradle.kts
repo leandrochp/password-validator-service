@@ -18,8 +18,8 @@ configurations {
 }
 
 repositories {
+    mavenLocal()
     mavenCentral()
-    jcenter()
 }
 
 sourceSets {
@@ -33,26 +33,24 @@ val componentTestImplementation: Configuration by configurations.getting {
     extendsFrom(configurations.implementation.get())
 }
 
-
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    //spring-boot
+    // spring-boot
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-    //jackson
+    // jackson
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    //openapi
+    // openapi
     implementation("org.springdoc:springdoc-openapi-ui:1.6.12")
-    implementation("org.springdoc:springdoc-openapi-data-rest:1.6.12")
 
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.mockk:mockk:1.12.4")
-    testImplementation("org.assertj:assertj-core")
-    testImplementation("org.junit.jupiter:junit-jupiter")
 
     componentTestImplementation("org.springframework.boot:spring-boot-starter-test")
 }
+
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
