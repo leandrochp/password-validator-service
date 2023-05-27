@@ -44,6 +44,10 @@ curl -X GET "http://localhost:7000/health-check"
 
 * URL: http://localhost:7000/docs ou http://localhost:7000/swagger-ui/index.html
 
+### Testes
+- Testes unitários para regras de negócio e
+- Testes de componente para o contrato e respostas http esperadas.
+
 ### Decisões do projeto
 
 O DDD (Domain Driven Design) foi utilizado para estruturar o microsserviço. Utilizando apenas duas camadas, aplicação para receber requisições e domínio para armazenar a lógica de negócio. 
