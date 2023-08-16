@@ -1,9 +1,9 @@
-package com.github.leandrochp.passwordvalidatorservice.domain.services.impl
+package com.github.leandrochp.passwordvalidatorservice.domain.service.impl
 
 import com.github.leandrochp.passwordvalidatorservice.domain.log.LoggableClass
 import com.github.leandrochp.passwordvalidatorservice.domain.passwordvalidator.Password
-import com.github.leandrochp.passwordvalidatorservice.domain.services.PasswordValidatorService
-import com.github.leandrochp.passwordvalidatorservice.domain.validators.PasswordValidator
+import com.github.leandrochp.passwordvalidatorservice.domain.service.PasswordValidatorService
+import com.github.leandrochp.passwordvalidatorservice.domain.validator.PasswordValidator
 import org.springframework.stereotype.Service
 
 @Service

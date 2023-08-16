@@ -1,4 +1,4 @@
-package com.github.leandrochp.passwordvalidatorservice.application.web.handlers
+package com.github.leandrochp.passwordvalidatorservice.application.web.handler
 
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus

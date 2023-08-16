@@ -1,4 +1,4 @@
-package com.github.leandrochp.passwordvalidatorservice.domain.validators
+package com.github.leandrochp.passwordvalidatorservice.domain.validator
 
 import com.github.leandrochp.passwordvalidatorservice.domain.passwordvalidator.PasswordMock
 import org.junit.jupiter.api.Test

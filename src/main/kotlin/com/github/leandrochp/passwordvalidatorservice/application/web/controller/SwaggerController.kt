@@ -1,4 +1,4 @@
-package com.github.leandrochp.passwordvalidatorservice.application.web.controllers
+package com.github.leandrochp.passwordvalidatorservice.application.web.controller
 
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping

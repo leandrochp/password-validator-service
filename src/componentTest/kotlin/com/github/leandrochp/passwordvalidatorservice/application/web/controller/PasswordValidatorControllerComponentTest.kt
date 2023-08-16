@@ -1,9 +1,9 @@
-package com.github.leandrochp.passwordvalidatorservice.application.web.controllers
+package com.github.leandrochp.passwordvalidatorservice.application.web.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import com.github.leandrochp.passwordvalidatorservice.application.web.responses.PasswordValidateResponse
+import com.github.leandrochp.passwordvalidatorservice.application.web.response.PasswordValidateResponse
 import com.github.leandrochp.passwordvalidatorservice.utils.ComponentTestsUtils
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

@@ -1,4 +1,4 @@
-package com.github.leandrochp.passwordvalidatorservice.domain.validators
+package com.github.leandrochp.passwordvalidatorservice.domain.validator
 
 object PasswordValidator {
 
